@@ -54,32 +54,23 @@ terms of accuracy on this specific task.
 
 ------------------------------------------------------------------------
 
-## How to Use 📖
+## Usage Guide
 
-The fine-tuned model is available on Hugging Face and can be easily used
-for inference.
+### Model Training
 
-**Hugging Face Model URL**:
-[`girik1312/pricer-2025-09-08_22.54.10`](https://huggingface.co/girik1312/pricer-2025-09-08_22.54.10)
+- Open `Fine_tuning_llama.ipynb`.
+- Load and preprocess the dataset.
+- Configure model and training hyperparameters.
+- Run training cells to fine-tune the LLaMA model.
+- Save the fine-tuned model checkpoint.
 
-You can load the model and tokenizer directly from the Hugging Face Hub
-using the `transformers` library:
+### Evaluation
 
-``` python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-model_name = "girik1312/pricer-2025-09-08_22.54.10"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
-
-# Example usage
-product_description = "A high-quality, durable and water-resistant backpack, perfect for hiking and travel."
-inputs = tokenizer(product_description, return_tensors="pt")
-outputs = model.generate(**inputs)
-predicted_price = tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-print(f"Predicted Price: {predicted_price}")
-```
+- Open `Testing_the_finetuned_model.ipynb`.
+- Load the saved checkpoint.
+- Run predictions on test data.
+- Evaluate with metrics such as MAE, RMSE, and MAPE.
+- Visualize predictions vs. actual values.
 
 ------------------------------------------------------------------------
 
